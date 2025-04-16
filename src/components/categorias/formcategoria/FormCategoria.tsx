@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import Categoria from "../../../models/Categoria";
 import { useNavigate, useParams } from "react-router-dom";
-import { atualizar, buscar, categorias } from "../../../services/Service";
+import { atualizar, buscar, cadastrarCategorias} from "../../../services/Service";
 import { RotatingLines } from "react-loader-spinner";
 
 function FormCategoria() {
@@ -46,7 +46,7 @@ function FormCategoria() {
 
             }else {
             try {
-                await categorias(`/categorias`, categoria, setCategoria)
+                await cadastrarCategorias(`/categorias`, categoria, setCategoria)
                 alert('A Categoria foi cadastrada com sucesso!')
             } catch (error: any) {
                     alert('Erro ao cadastrar a categoria.')
@@ -63,6 +63,17 @@ function FormCategoria() {
             </h1>
 
             <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovaCategoria}>
+                <div className="flex flex-col gap-2">
+                    <label htmlFor="nome">Nome da Categoria</label>
+                    <input
+                        type="text"
+                        placeholder="Descreva aqui o nome da sua Categoria"
+                        name='nome'
+                        className="border-3 border-slate-700 rounded p-2"
+                        value={categoria.nome}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                    />
+                </div>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="descricao">Descrição da Categoria</label>
                     <input

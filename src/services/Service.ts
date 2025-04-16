@@ -9,10 +9,6 @@ export const cadastrarCategorias = async (url: string, dados: Object, setDados: 
     setDados(resposta.data)
 }
 
-export const categorias = async (url: string, dados: Object, setDados: Function) => {
-    const resposta = await api.post(url, dados)
-    setDados(resposta.data)
-}
 
 export const buscar = async (url: string, setDados: Function) => {
     const resposta = await api.get(url)
